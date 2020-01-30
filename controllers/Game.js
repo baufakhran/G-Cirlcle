@@ -3,24 +3,23 @@ const GameHelper = require('../helper/gameHelper')
 
 class GameController{
   static findAll(req,res){
-    console.log(req.session);
+    let role = req.session.role 
+    // console.log(req.session);
     Game.findAll({include : [Dlc,User]})
     .then(result=> {
       // res.send(result)
-      res.render('games', {data:result})
+      res.render('games', {data:result, role})
     })
     .catch(err=>res.send(err))
   }
 
   static detailGame(req,res){
+    let error = req.query.error
     let idSelect = +req.params.id
-    let role = "admin" //req.session.role 
+    let role = req.session.role 
     Game.findAll({where:{id:idSelect},include : [Dlc]})
     .then(result=> {
-      // res.send(result)
-      // let dlc = GameHelper.dlcToString(result[0].Dlcs)
-      // console.log(dlc);
-      res.render('gameDetail',{data:result[0], role:role})
+      res.render('gameDetail',{data:result[0], role:role, error})
     })
     .catch(err=>res.send(err))
   }
@@ -40,7 +39,7 @@ class GameController{
     name : req.body.name,
     price : req.body.price,
     rating : req.body.rating,
-    genre : GameHelper.genreToString(req.body.genre)
+    genre : req.body.genre
   }
   Game.update(input,{
     where : {
@@ -48,7 +47,6 @@ class GameController{
     }
   })
     .then(_=> {
-      // console.log(req.body.genre)
       res.redirect('/games')})
     .catch(err=> res.send(err))
   }
@@ -86,21 +84,18 @@ class GameController{
   }
 
   static buyGame(req,res){
-    let idUser = 4//req.session.userId
-    let idGame = req.params.id
-    let wlt = 100000//req.session.wallet
+    let idUser = req.session.userId
+    let idGame = +req.params.id
+    let wlt = req.session.wallet
     let price = req.params.price
     let change
-    console.log('buy')
     if(wlt>price){
       change = wlt-price
       GameUser.create({
-        GameId :idGame,
-        UserId :idUser
+        GameId : idGame,
+        UserId : idUser
       })
       .then(_=>{
-          console.log('sukses1');
-          
           return User.update({
             wallet : change
           }, {where : {
@@ -108,20 +103,17 @@ class GameController{
           }})
         })
       .then(_=>{
-        console.log('sukses2');
         let resi = GameHelper.resiGenerator(idUser)
         res.render('purchaseOrder', {resi})
       })  
       .catch(err=> {
-        console.log('error');
         res.send(err)})  
     } else {
-      res.send('uang tidak cukup')
+      res.redirect(`/games/${idGame}/bla-bla?error=uang tidak cukup`)
     }
   }
 
-  static addDLC(req,res){
-    console.log(req.body)   
+  static addDLC(req,res){   
     let name = req.body.name
     let GameId = req.params.id
     Dlc.create({name,GameId})

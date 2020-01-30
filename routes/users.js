@@ -3,7 +3,7 @@ const UserController = require('../controllers/User')
 const auth = require('../middleware/auth')
 
 
-router.get('/', UserController.getAllUser)
+router.get('/',auth.checkAdmin, UserController.getAllUser)
 
 
 module.exports = router

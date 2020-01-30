@@ -1,0 +1,13 @@
+<%- include('./partials/header.ejs') %>
+<%- include('./partials/navbar.ejs') %>
+
+<div style="text-align: center">
+   <h1>TopUp</h1>
+   <form action="/profile/<%= id %>/topup" method="POST">
+      <label for="number">Amount</label>
+      <input type="number" name="wallet" required autofocus> <br>
+      <button>register</button>
+   </form>
+</div>
+
+<%- include('./partials/footer.ejs') %>

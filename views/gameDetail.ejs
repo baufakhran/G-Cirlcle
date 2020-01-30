@@ -2,6 +2,9 @@
 <%- include('./partials/navbar.ejs') %>
 <!-- Show game detail from endpoint games -->
 <h1><%= data.name %> </h1>
+<% if(error){ %>
+  <h2 style="color: red; text-align: center;">!!!<%= error %> </h2>
+<% } %> 
 <table border style="width: 100%;">
 <tr>
   <td rowspan="7" width="660px" > <img src="<%= data.url %> " width="650px" alt=""></td>

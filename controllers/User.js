@@ -23,11 +23,11 @@ class UserController {
    }
 
    static getFormEdit(req, res) {
-      id = +req.params.id
+      let idSearch = +req.params.id
       User.findOne({
          include : [ Game ],
          where : {
-            id
+            id:idSearch
          }
       })
          .then(profile => {
@@ -35,7 +35,7 @@ class UserController {
             profile.Games.forEach(game => {
                games.push(game.name)
             })
-
+            // console.log(profile);
             res.render('profile', { profile, games })
          })
          .catch(err => {
@@ -118,8 +118,9 @@ class UserController {
                req.session.role = data.role
                req.session.wallet = data.wallet
                req.session.isLogin = true
+               req.session.wallet = data.wallet
                // console.log(req.session)
-               res.redirect('/')
+               res.redirect(`/profile/${data.id}`)
             }
          })
          .catch(err =>{ 
@@ -177,8 +178,29 @@ class UserController {
    }
 
    static logOut(req, res) {
-      req.session = {}
-      res.redirect('/')
+      // req.session = {}
+      req.session.userId = null
+      req.session.username = null
+      req.session.role = null
+      req.session.wallet = null
+      req.session.isLogin = false
+      req.session.wallet = null
+      res.redirect('/?status=berhasil-log-out')
+   }
+
+   static topUpForm(req,res){
+     let id = req.session.userId
+     res.render('topUpForm', {id})
+   }
+
+   static topUp(req,res){
+    let id = req.session.userId
+    let initWallet = req.session.wallet
+     let amount = +req.body.wallet 
+     let input = {wallet:amount+initWallet}
+     User.update(input, {where : {id}})
+      .then(_=> res.redirect(`/profile/${id}`))
+      .catch(_=> res.send(err))
    }
 }
 
