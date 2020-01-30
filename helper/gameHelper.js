@@ -19,6 +19,17 @@ class GameHelper{
     arr.unshift("{")
     return arr.join(',')
   }
+
+  static resiGenerator(value){
+    let rdm = ['qwJka','Ysasd', 'ksLjh', 'HajPL', 'TrLPs']
+    let resi = new Date().getDate()+"-"+rdm[Math.floor(Math.random()*5)]+"-"+value
+    return resi
+  }
+
+  static getAllDlc(value){
+    let dlc = value.map(el=>{el.name})
+    return dlc.join(',')
+  }
 }
 
 module.exports = GameHelper

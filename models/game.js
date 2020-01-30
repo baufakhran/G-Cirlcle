@@ -1,5 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
+
   const Model = sequelize.Sequelize.Model
 
   class Game extends Model {}
@@ -11,13 +12,15 @@ module.exports = (sequelize, DataTypes) => {
     url: DataTypes.STRING,
     slug: DataTypes.STRING,
     rating:DataTypes.FLOAT,
-    released: DataTypes.STRING
-  }, {
+    released: DataTypes.STRING    
+  }, {hooks : {
+    beforeCreate : (instance)=>{
+      instance.slug = instance.name.toLowerCase().split(' ').join('-')
+    }
+  },
     sequelize
   })
 
-  // const Game = sequelize.define('Game', {
-  // }, {});
   Game.associate = function(models) {
     // associations can be defined here
     Game.belongsToMany(models.User, {through: 'GameUser'})
