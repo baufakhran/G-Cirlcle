@@ -26,7 +26,6 @@ class GameController{
     Game.findByPk(idSelect)
       .then(result=> {
         let genre = GameHelper.genreToArray(result.genre) 
-        console.log(genre);
         res.render('editGames', {data : result, genre:genre})
       })
       .catch(err=> res.send(err))
@@ -51,11 +50,29 @@ class GameController{
   }
 
   static deleteGame(req,res){
-    let idDelete = req.params.id
-    Menu.destroy({where: {idd : idDelete}})
-    .then(_=> res.redirect('/games'))
-    .catch(err=> res.send(err)) 
+    let idDelete = +req.params.id
+    Game.destroy({where: {id : idDelete}})
+    .then(_=> {
+    console.log('sukses')
+      res.redirect('/games')})
+    .catch(err=> {
+      console.log('gagal');
+      res.send(err)}) 
   }
+
+  static addForm(req,res){
+    res.render('addGames')
+  }
+
+  static add(req,res){
+    let input = {
+      name : req.body.name,
+      price : req.body.price,
+      rating : req.body.rating,
+      genre : GameHelper.genreToString(req.body.genre)
+    }
+  }
+
 }
 
 module.exports = GameController
