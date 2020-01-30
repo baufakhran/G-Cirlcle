@@ -17,9 +17,6 @@ class GameController{
     let role = "admin" //req.session.role 
     Game.findAll({where:{id:idSelect},include : [Dlc]})
     .then(result=> {
-      // res.send(result)
-      // let dlc = GameHelper.dlcToString(result[0].Dlcs)
-      // console.log(dlc);
       res.render('gameDetail',{data:result[0], role:role})
     })
     .catch(err=>res.send(err))
@@ -86,9 +83,9 @@ class GameController{
   }
 
   static buyGame(req,res){
-    let idUser = 4//req.session.userId
+    let idUser = req.session.userId
     let idGame = req.params.id
-    let wlt = 100000//req.session.wallet
+    let wlt = req.session.wallet
     let price = req.params.price
     let change
     console.log('buy')

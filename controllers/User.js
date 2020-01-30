@@ -117,6 +117,7 @@ class UserController {
                req.session.username = data.username
                req.session.role = data.role
                req.session.isLogin = true
+               req.session.wallet = data.wallet
                // console.log(req.session)
                res.redirect('/')
             }
