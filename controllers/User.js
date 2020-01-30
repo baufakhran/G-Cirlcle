@@ -116,6 +116,7 @@ class UserController {
                req.session.userId = data.id
                req.session.username = data.username
                req.session.role = data.role
+               req.session.wallet = data.wallet
                req.session.isLogin = true
                req.session.wallet = data.wallet
                // console.log(req.session)
@@ -150,6 +151,7 @@ class UserController {
          include : [Game]
       })
          .then(data => {
+            console.log(req.session, '=====')
             // res.send(data)
             let gamesInUser = []
             data.forEach(game => {
