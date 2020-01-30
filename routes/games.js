@@ -8,7 +8,7 @@ router.post('/:id/edit', GameController.edit)
 router.get('/:id/:slug', GameController.detailGame) //menampilkan detail game
 router.get('/:id/buy') //membeli game ->user only
 
-// router.get('/:id/delete')
+router.get('/:id/delete', GameController.deleteGame)
 
 // router.get('/add') //form menambahkan game-> Admin Only
 // router.post('/add')//menambahkan game-> Admin Only

@@ -49,6 +49,13 @@ class GameController{
       res.redirect('/games')})
     .catch(err=> res.send(err))
   }
+
+  static deleteGame(req,res){
+    let idDelete = req.params.id
+    Menu.destroy({where: {idd : idDelete}})
+    .then(_=> res.redirect('/games'))
+    .catch(err=> res.send(err)) 
+  }
 }
 
 module.exports = GameController
