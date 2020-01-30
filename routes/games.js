@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const GameController = require('../controller/Game')
+const GameController = require('../controllers/Game')
 router.get('/', GameController.findAll)//menampilkan list games
 
 router.get('/:id/edit', GameController.editForm)

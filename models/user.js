@@ -13,6 +13,11 @@ module.exports = (sequelize, DataTypes) => {
     role: DataTypes.STRING
   }, {
     sequelize
+    // hooks : {
+    //   beforeCreate: (data, options) => {
+    //     data.dataValues.password = data.dataValues.password.toUpperCase()
+    //   }   
+    // }
   })
 
   // const User = sequelize.define('User', {

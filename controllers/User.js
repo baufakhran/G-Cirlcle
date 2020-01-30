@@ -100,21 +100,30 @@ class UserController {
    }
 
    static login(req, res) {
-      User.findAll({
+      User.findOne({
          where : {
             username : req.body.username,
             password : req.body.password
          }
       })
          .then(data => {
-            console.log(data)
+            // console.log(data)
             if(data.length === 0) {
                res.redirect('/login?keyword=failed')
             } else{
+               //req.session
+               // console.log(data)
+               req.session.userId = data.id
+               req.session.username = data.username
+               req.session.role = data.role
+               req.session.isLogin = true
+               // console.log(req.session)
                res.redirect('/')
             }
          })
-         .catch(err => res.redirect('/login?keyword=failed'))
+         .catch(err =>{ 
+            res.redirect('/login?keyword=failed')
+         })
    }
 
    static getFormRegister(req, res) {
@@ -133,20 +142,41 @@ class UserController {
    }
 
    static getAllUser(req, res) {
-      User.findAll(
-      //    {
-      //    include : [Game]
-      // }
-      )
+      User.findAll({
+         where : {
+            role: 'user'
+         },
+         include : [Game]
+      })
          .then(data => {
-            // console.log(data)
+            // res.send(data)
+            let gamesInUser = []
+            data.forEach(game => {
+               // res.send(game.username)
+               let userGame = {}
+               let games = []
+               game.Games.forEach(el => {
+                  games.push(el.name)
+                  // res.send(games)
+               })
+               let name = game.username
+               userGame[name] = games
+               // res.send(userGame)
+               gamesInUser.push(userGame)
+            })
+            // res.send(gamesInUser)
             // if(data.dataValues.Games.length !== 0) {
-               res.render('users', { data })
+               res.render('users', { data, gamesInUser })
             // }
          })
          .catch(err => {
             res.render('error', { err })
          })
+   }
+
+   static logOut(req, res) {
+      req.session = {}
+      res.redirect('/')
    }
 }
 

@@ -1,6 +1,6 @@
 const router = require('express').Router()
+const UserController = require('../controllers/User')
 
-router.get('/')//form logout
-router.post('/')//logout
+router.get('/', UserController.logOut)//logout
 
 module.exports = router
