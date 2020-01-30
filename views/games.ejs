@@ -2,7 +2,23 @@
 <%- include('./partials/navbar.ejs') %>
 <!-- show List game from endpoint games -->
 
+<h1>List Games</h1>
 
-
+<table border style="width:100%;">
+  <tr>
+    <th>Name</th>
+    <th>Genre</th>
+    <th>Rating</th>
+    <th>Action</th>
+  </tr>
+  <% data.forEach(el=>{ %>
+    <tr>
+      <td><%= el.name %> </td>
+      <td><%= el.genre %> </td>
+      <td><%= el.rating %> </td>
+      <td> <a href="games/<%= el.id %>/<%= el.slug %>">detail</a></td>
+    </tr>
+  <% })%> 
+</table>
 
 <%- include('./partials/footer.ejs') %>

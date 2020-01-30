@@ -1,7 +1,18 @@
 <%- include('./partials/header.ejs') %>
 <%- include('./partials/navbar.ejs') %>
+<h1>Edit Game</h1>
 
-
+<form action="/games/<%= data.id %>/edit" method="POST">
+  <label for="name">Name :</label><br>
+  <input type="text" name="name" value="<%= data.name %>"><br>
+  <label for="name">Price :</label><br>
+  <input type="number" name="price" value="<%= data.price %>"><br>
+  <label for="name">Rating :</label><br>
+  <input type="number" name="rating" value="<%= data.rating %>" step="any"><br>
+  <label for="name">Genre :</label><br>
+  <input type="text" name="genre" value="<%=genre.join(' ')%>" ><br>
+  <button>Submit</button>
+</form>
 
 
 

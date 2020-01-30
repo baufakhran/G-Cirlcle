@@ -1,8 +1,34 @@
 <%- include('./partials/header.ejs') %>
 <%- include('./partials/navbar.ejs') %>
 <!-- Show game detail from endpoint games -->
-
-
+<h1><%= data.name %> </h1>
+<table border style="width: 100%;">
+<tr>
+  <td rowspan="6" width="660px" > <img src="<%= data.url %> " width="650px" alt=""></td>
+</tr>
+<tr>
+  <td><b>Price :</b><%= data.price %></td>
+</tr>
+<tr>
+  <td><b>Genre :</b><%= data.genre %></td>
+</tr>
+<tr>
+  <td><b>Rating :</b><%= data.rating %></td>
+</tr>
+<tr>
+  <td><b>Released Date :</b><%= data.released %></td>
+</tr>
+<tr>
+  <td><b>Action :</b> 
+  <% if(role==='admin'){ %>
+  <a href="/games/<%= data.id %>/edit">edit</a>|<a href="/games/<%= data.id %>/delete">delete</a>
+  <% } %>
+  <% if(role==='user'){ %>
+  <a href="/games/<%= data.id %>">buy</a>
+  <% } %>  
+  </td>
+</tr>
+</table>
 
 
 <%- include('./partials/footer.ejs') %>

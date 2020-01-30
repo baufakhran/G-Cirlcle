@@ -6,10 +6,13 @@ module.exports = (sequelize, DataTypes) => {
     genre: DataTypes.STRING,
     url: DataTypes.STRING,
     slug: DataTypes.STRING,
+    rating:DataTypes.FLOAT,
     released: DataTypes.STRING
   }, {});
   Game.associate = function(models) {
     // associations can be defined here
+    Game.belongsToMany(models.User, {through: 'GameUser'})
+    Game.hasMany(models.Dlc)
   };
   return Game;
 };
