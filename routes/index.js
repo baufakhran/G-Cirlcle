@@ -4,12 +4,17 @@ const profilRouter = require('./profil')
 const loginRouter = require('./login')
 const logoutRouter = require('./logout')
 const registerRouter = require('./register')
+const userRouter = require('./users')
 
-router.get('/')
+router.get('/', (req, res) => {
+   res.render('index')
+})
 router.use('/games', gamesRouter)
-router.use('/profil', profilRouter)
+router.use('/profile', profilRouter) //1
 router.use('/login', loginRouter)
 router.use('/logout', logoutRouter)
 router.use('/regiter', registerRouter)
+router.use('/users', userRouter)
+
 
 module.exports = router

@@ -1,6 +1,24 @@
 <%- include('./partials/header.ejs') %>
 <%- include('./partials/navbar.ejs') %>
 
+<div style="text-align: center">
+   <table border align="center">
+      <tr>
+         <th>Username</th>
+         <th>Email</th>
+         <th>Phone Number</th>
+         <th>Games</th>
+      </tr>
+      <% data.forEach(user => { %>
+         <tr>
+            <td><%= user.username %></td>
+            <td><%= user.email %></td>
+            <td><%= user.phone_number %></td>
+            <td>Games</td>
+         </tr>
+      <% }) %>
+   </table>
+</div>
 
 
 
