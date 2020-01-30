@@ -1,0 +1,21 @@
+<%- include('./partials/header.ejs') %>
+<%- include('./partials/navbar.ejs') %>
+<!-- validate before delete -->
+<div class="profile">
+   <div>
+      <a href="/profile/<%= id %>">Profile</a>      
+      <a href="/profile/<%= id %>/delete">Deactivate Account</a>
+   </div>
+   <div style="text-align :center">   
+      <h1>Validate before remove account</h1>
+      <form action="/profile">
+         <label for="username">Username</label>
+         <input type="text" name="username"> <br/><br/>
+         <label for="password">Password</label>
+         <input type="password" name="password"><br/> <br/>
+         <button onclick="return confirm('are you sure about this ?')" >Submit</button>
+      </form>
+   </div>
+</div>
+
+<%- include('./partials/footer.ejs') %>

@@ -1,13 +1,19 @@
 <%- include('./partials/header.ejs') %>
 <%- include('./partials/navbar.ejs') %>
 
-<form action="/" method="POST">
-   <label for="username">Username</label>
-   <input type="text" name="username" required autofocus> <br>
-   <label for="password">Password</label>
-   <input type="password" name="password" required>
-   <input type="submit">
-</form>
+<div style="text-align : center">
+   <h1>LOGIN </h1>
+   <% if(err !== '') { %>
+      <p style="color:red"><b><%= err %></b></p>
+   <% } %><br/>
+   <form action="/login" method="POST">
+      <label for="username">Username</label>
+      <input type="text" name="username" required autofocus> <br> <br>
+      <label for="password">Password</label>
+      <input type="password" name="password" required> <br> <br>
+      <input type="submit">
+   </form>
+</div>
 
 
 
