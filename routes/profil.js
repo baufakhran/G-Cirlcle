@@ -8,6 +8,6 @@ router.get('/:id/edit', UserController.getFormEdit)//form mengedit profil
 router.post('/:id/edit', UserController.updateUser)//form mengedit profil
 router.get('/:id/delete', UserController.getDeleteForm)//form validasi delete
 router.post('/:id/delete', UserController.deleteData)//validasi delete
-
-
+router.get('/:id/topup', UserController.topUpForm)
+router.post('/:id/topup', UserController.topUp)
 module.exports = router

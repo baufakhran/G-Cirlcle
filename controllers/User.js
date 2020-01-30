@@ -189,7 +189,18 @@ class UserController {
    }
 
    static topUpForm(req,res){
-     
+     let id = req.session.userId
+     res.render('topUpForm', {id})
+   }
+
+   static topUp(req,res){
+    let id = req.session.userId
+    let initWallet = req.session.wallet
+     let amount = +req.body.wallet 
+     let input = {wallet:amount+initWallet}
+     User.update(input, {where : {id}})
+      .then(_=> res.redirect(`/profile/${id}`))
+      .catch(_=> res.send(err))
    }
 }
 
