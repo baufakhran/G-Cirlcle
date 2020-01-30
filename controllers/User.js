@@ -31,12 +31,8 @@ class UserController {
          }
       })
          .then(profile => {
-            let games = []
-            profile.Games.forEach(game => {
-               games.push(game.name)
-            })
             // console.log(profile);
-            res.render('profile', { profile, games })
+            res.render('editProfile', { profile })
          })
          .catch(err => {
             res.render('error', { err })
@@ -68,6 +64,7 @@ class UserController {
 
    static deleteData(req, res) {
       let id = +req.params.id
+      console.log(id)
       User.findOne({
          where : {
             id,
@@ -76,7 +73,8 @@ class UserController {
          }
       })
          .then(account => {
-            return User.destroy({
+            console.log(account)
+            User.destroy({
                where : {
                   id
                }
