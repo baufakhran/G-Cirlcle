@@ -1,6 +1,6 @@
 const router = require('express').Router()
 
-router.get('/logout')//form logout
-router.post('/logout')//logout
+router.get('/')//form logout
+router.post('/')//logout
 
 module.exports = router

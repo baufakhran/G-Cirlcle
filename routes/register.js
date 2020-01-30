@@ -1,6 +1,6 @@
 const router = require('express').Router()
 
-router.get('/register')//form register
-router.post('/register')//register
+router.get('/')//form register
+router.post('/')//register
 
 module.exports = router
