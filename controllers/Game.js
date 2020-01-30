@@ -3,11 +3,12 @@ const GameHelper = require('../helper/gameHelper')
 
 class GameController{
   static findAll(req,res){
-    console.log(req.session);
+    let role = req.session.role 
+    // console.log(req.session);
     Game.findAll({include : [Dlc,User]})
     .then(result=> {
       // res.send(result)
-      res.render('games', {data:result})
+      res.render('games', {data:result, role})
     })
     .catch(err=>res.send(err))
   }
@@ -15,7 +16,7 @@ class GameController{
   static detailGame(req,res){
     let error = req.query.error
     let idSelect = +req.params.id
-    let role = req.session.role //req.session.role 
+    let role = req.session.role 
     Game.findAll({where:{id:idSelect},include : [Dlc]})
     .then(result=> {
       res.render('gameDetail',{data:result[0], role:role, error})
@@ -38,7 +39,7 @@ class GameController{
     name : req.body.name,
     price : req.body.price,
     rating : req.body.rating,
-    genre : GameHelper.genreToString(req.body.genre)
+    genre : req.body.genre
   }
   Game.update(input,{
     where : {
@@ -46,7 +47,6 @@ class GameController{
     }
   })
     .then(_=> {
-      // console.log(req.body.genre)
       res.redirect('/games')})
     .catch(err=> res.send(err))
   }
@@ -84,11 +84,8 @@ class GameController{
   }
 
   static buyGame(req,res){
-    // console.log(req.params);
-    
     let idUser = req.session.userId
     let idGame = +req.params.id
-    console.log(idGame);
     let wlt = req.session.wallet
     let price = req.params.price
     let change
@@ -116,8 +113,7 @@ class GameController{
     }
   }
 
-  static addDLC(req,res){
-    console.log(req.body)   
+  static addDLC(req,res){   
     let name = req.body.name
     let GameId = req.params.id
     Dlc.create({name,GameId})

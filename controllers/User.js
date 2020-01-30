@@ -185,7 +185,11 @@ class UserController {
       req.session.wallet = null
       req.session.isLogin = false
       req.session.wallet = null
-      res.redirect('/')
+      res.redirect('/?status=berhasil-log-out')
+   }
+
+   static topUpForm(req,res){
+     
    }
 }
 

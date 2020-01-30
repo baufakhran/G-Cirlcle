@@ -3,8 +3,10 @@
 <!-- show List game from endpoint games -->
 
 <h1>List Games</h1>
-
-<table border style="width:100%;">
+<% if(role=='admin') {%>
+<h3><button><a href="/games/add">add new game</a></button></h3>
+<% } %> 
+<table class="table" style="width:100%;" >
   <tr>
     <th>Name</th>
     <th>Genre</th>
