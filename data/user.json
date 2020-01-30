@@ -1,0 +1,34 @@
+[
+   {
+      "username" : "budi",
+      "password" : "budi12345",
+      "wallet" : null,
+      "email" : "budi@gmail.com",
+      "phone_number" : "08129876541", 
+      "role" : "user"
+   }, 
+   {
+      "username" : "admin",
+      "password" : "admin12345",
+      "wallet" : null,
+      "email" : "admin@gmail.com",
+      "phone_number" : "08987635101",
+      "role" : "admin"
+   },
+   {
+      "username" : "lukmaniar",
+      "password" : "lukmaniar12345",
+      "wallet" : null,
+      "email" : "lukmaniar@gmail.com",
+      "phone_number" : "08111111111",
+      "role" : "user"
+   },
+   {
+      "username" : "ridziradza",
+      "password" : "ridziradza12345",
+      "wallet" : null,
+      "email" : "ridziradza@gmail.com",
+      "phone_number" : "08222222222",
+      "role" : "user"
+   }
+]
