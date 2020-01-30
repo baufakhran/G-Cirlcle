@@ -7,7 +7,7 @@ class Authentication {
             res.redirect('/')
          }
       } else {
-         next('you must login to see this')
+         next('You must login to see this')
       }
    }
 
@@ -19,7 +19,15 @@ class Authentication {
             res.redirect('/')
          } 
       } else {
-         next('you must login to see this')
+         next('You must login to see this')
+      }
+   }
+
+   static checkLogin(req, res, next) {
+      if(req.session.isLogin) {
+         next()
+      } else {
+         next('You must login to see this')
       }
    }
 }

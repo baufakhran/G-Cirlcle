@@ -2,7 +2,7 @@
 <%- include('./partials/navbar.ejs') %>
 
 <div style="text-align: center">
-   <table border align="center">
+   <table border align="center" width="100%">
       <tr>
          <th>Username</th>
          <th>Email</th>
@@ -14,7 +14,13 @@
             <td><%= user.username %></td>
             <td><%= user.email %></td>
             <td><%= user.phone_number %></td>
-            <td><%= games %></td>
+            <td>
+               <% gamesInUser.forEach((el, i) => { %>
+                  <% if(Object.keys(el)[0] === user.username) { %>
+                     <%= gamesInUser[i][user.username] %>
+                  <% } %>
+               <% }) %>
+            </td>
          </tr>
       <% }) %>
    </table>
