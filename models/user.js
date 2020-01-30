@@ -16,6 +16,11 @@ module.exports = (sequelize, DataTypes) => {
     hooks : {
       beforeCreate: (data, options) => {
         data.role = "user"
+      },
+      afterFind: (data, options) => {
+        if(!data.wallet) {
+          data.wallet = 0
+        }
       }   
     }
   })
