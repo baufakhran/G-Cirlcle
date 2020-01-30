@@ -1,0 +1,20 @@
+<%- include('./partials/header.ejs') %>
+<%- include('./partials/navbar.ejs') %>
+<!-- show user profile data -->
+<a href="/profile">Back To Profile</a>
+
+<form action="/<%= profile.id %>/edit" method="POST">
+   <label for="username">Username</label>
+   <input type="text" name="username" value="<%= profile.username %>" required autofocus> <br/>
+   <label for="gameName">Games Owned</label>
+   <input type="text" name="gameName" value="<%= games %>" readonly> <br/>
+   <label for="email">Email</label>
+   <input type="email" name="email" value="<%= profile.email %>" required> <br/>
+   <label for="phone_number">phone_number</label>
+   <input type="text" name="phone_number" value="<%= profile.phone_number %>" required> <br/>
+   <input type="submit">
+</form>
+
+
+
+<%- include('./partials/footer.ejs') %>

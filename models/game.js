@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   const Model = sequelize.Sequelize.Model
 
   class Game extends Model {}
-  
+
   Game.init({
     name: DataTypes.STRING,
     price: DataTypes.INTEGER,
@@ -20,15 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   },
     sequelize
   })
-  // const Game = sequelize.define('Game', {
-  //   name: DataTypes.STRING,
-  //   price: DataTypes.INTEGER,
-  //   genre: DataTypes.STRING,
-  //   url: DataTypes.STRING,
-  //   slug: DataTypes.STRING,
-  //   rating:DataTypes.FLOAT,
-  //   released: DataTypes.STRING
-  // }, {});
+
   Game.associate = function(models) {
     // associations can be defined here
     Game.belongsToMany(models.User, {through: 'GameUser'})

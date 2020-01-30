@@ -3,6 +3,7 @@ const GameHelper = require('../helper/gameHelper')
 
 class GameController{
   static findAll(req,res){
+    console.log(req.session);
     Game.findAll({include : [Dlc,User]})
     .then(result=> {
       // res.send(result)
