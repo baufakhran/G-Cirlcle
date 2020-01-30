@@ -3,7 +3,7 @@
       "name" : "The Elder Scrolls V: Skyrim",
       "slug" : "the-elder-scrolls-v-skyrim",
       "price" : 300000,
-      "genre" : ["action", "rpg", "simulation"],
+      "genre" : "action, rpg, simulation",
       "url" : "https://media.rawg.io/media/games/e9c/e9cbc91e2090638ddab6ae0b3d334f90.jpg",
       "rating" : 4.5,
       "released" : "2011-11-11" 
@@ -12,7 +12,7 @@
       "name" : "Borderlands 2",
       "slug" : "borderlands-2",
       "price" : 250000,
-      "genre" : ["action", "shooter", "rpg"],
+      "genre" : "action, shooter, rpg",
       "url" : "https://media.rawg.io/media/games/588/588c6bdff3d4baf66ec36b1c05b793bf.jpg",
       "rating" : 4.1,
       "released" : "2012-09-18"
@@ -21,7 +21,7 @@
       "name" : "Warframe",
       "slug" : "warframe",
       "price" : 840000,
-      "genre" : ["action"],
+      "genre" : "action",
       "url" : "https://steamcdn-a.akamaihd.net/steam/bundles/12914/7cd5qclgcdurodxo/header_586x192.jpg?t=1576642438",
       "rating" : 4.3,
       "released" : "2013-03-26"

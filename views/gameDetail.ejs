@@ -4,7 +4,7 @@
 <h1><%= data.name %> </h1>
 <table border style="width: 100%;">
 <tr>
-  <td rowspan="6" width="660px" > <img src="<%= data.url %> " width="650px" alt=""></td>
+  <td rowspan="7" width="660px" > <img src="<%= data.url %> " width="650px" alt=""></td>
 </tr>
 <tr>
   <td><b>Price :</b><%= data.price %></td>
@@ -19,16 +19,39 @@
   <td><b>Released Date :</b><%= data.released %></td>
 </tr>
 <tr>
+  <td><b>DLC :</b>
+    <% if(role==='user'){ %>
+      <% data.Dlcs.forEach(el=>{ %>
+        <br> <%= el.name %>
+      <% }) %>
+    <% } else { %>
+      <% data.Dlcs.forEach(el=>{ %>
+        <br> <%= el.name %> ------ <a href="/games/<%= data.id %> /<%= el.id %>/deleteDlc">DELETE</a>
+      <% }) %>
+    <% } %> 
+
+  </td>
+</tr>
+<tr>
   <td><b>Action :</b> 
   <% if(role==='admin'){ %>
   <a href="/games/<%= data.id %>/edit">edit</a>|<a href="/games/<%= data.id %>/delete">delete</a>
   <% } %>
   <% if(role==='user'){ %>
-  <a href="/games/<%= data.id %>">buy</a>
+  <a href="/games/<%=data.id%>/<%=data.price%>/buy">buy</a>
   <% } %>  
   </td>
 </tr>
 </table>
+
+<% if(role==='admin'){ %>
+<h1>Add DLC</h1>
+<form action="/games/<%= data.id %>/addDlc" method="POST">
+  <label for="name">DLC Name :</label><br>
+  <input type="text" name="name">
+  <button>submit</button>
+</form>
+<% } %>
 
 
 <%- include('./partials/footer.ejs') %>
