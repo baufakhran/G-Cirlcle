@@ -13,7 +13,7 @@ router.use('/games', gamesRouter)
 router.use('/profile', profilRouter) //1
 router.use('/login', loginRouter)
 router.use('/logout', logoutRouter)
-router.use('/regiter', registerRouter)
+router.use('/register', registerRouter)
 router.use('/users', userRouter)
 
 

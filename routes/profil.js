@@ -8,4 +8,5 @@ router.post('/:id/edit', UserController.updateUser)//form mengedit profil
 router.get('/:id/delete', UserController.getDeleteForm)//form validasi delete
 router.post('/:id/delete', UserController.deleteData)//validasi delete
 
+
 module.exports = router
