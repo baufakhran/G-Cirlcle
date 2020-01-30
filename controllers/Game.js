@@ -13,11 +13,12 @@ class GameController{
   }
 
   static detailGame(req,res){
+    let error = req.query.error
     let idSelect = +req.params.id
-    let role = "admin" //req.session.role 
+    let role = req.session.role //req.session.role 
     Game.findAll({where:{id:idSelect},include : [Dlc]})
     .then(result=> {
-      res.render('gameDetail',{data:result[0], role:role})
+      res.render('gameDetail',{data:result[0], role:role, error})
     })
     .catch(err=>res.send(err))
   }
@@ -83,21 +84,21 @@ class GameController{
   }
 
   static buyGame(req,res){
+    // console.log(req.params);
+    
     let idUser = req.session.userId
-    let idGame = req.params.id
+    let idGame = +req.params.id
+    console.log(idGame);
     let wlt = req.session.wallet
     let price = req.params.price
     let change
-    console.log('buy')
     if(wlt>price){
       change = wlt-price
       GameUser.create({
-        GameId :idGame,
-        UserId :idUser
+        GameId : idGame,
+        UserId : idUser
       })
       .then(_=>{
-          console.log('sukses1');
-          
           return User.update({
             wallet : change
           }, {where : {
@@ -105,15 +106,13 @@ class GameController{
           }})
         })
       .then(_=>{
-        console.log('sukses2');
         let resi = GameHelper.resiGenerator(idUser)
         res.render('purchaseOrder', {resi})
       })  
       .catch(err=> {
-        console.log('error');
         res.send(err)})  
     } else {
-      res.send('uang tidak cukup')
+      res.redirect(`/games/${idGame}/bla-bla?error=uang tidak cukup`)
     }
   }
 

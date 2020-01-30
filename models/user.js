@@ -12,12 +12,12 @@ module.exports = (sequelize, DataTypes) => {
     phone_number: DataTypes.STRING,
     role: DataTypes.STRING
   }, {
-    sequelize
-    // hooks : {
-    //   beforeCreate: (data, options) => {
-    //     data.dataValues.password = data.dataValues.password.toUpperCase()
-    //   }   
-    // }
+    sequelize,
+    hooks : {
+      beforeCreate: (data, options) => {
+        data.role = "user"
+      }   
+    }
   })
 
   // const User = sequelize.define('User', {

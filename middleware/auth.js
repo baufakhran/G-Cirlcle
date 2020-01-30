@@ -7,7 +7,7 @@ class Authentication {
             res.redirect('/')
          }
       } else {
-         next('You must login to see this')
+         next('you must login to see this')
       }
    }
 
@@ -19,17 +19,19 @@ class Authentication {
             res.redirect('/')
          } 
       } else {
-         next('You must login to see this')
+         next('you must login to see this')
       }
    }
 
-   static checkLogin(req, res, next) {
-      if(req.session.isLogin) {
-         next()
-      } else {
-         next('You must login to see this')
-      }
-   }
+   static isLogin (req,res,next){
+    console.log(req.session);
+    if(!req.session.isLogin){
+      res.redirect('/login?error=You Must Login')    
+    } else{
+      console.log(req.session, "fromauth");
+      next()
+    }
+  }
 }
 
 module.exports = Authentication

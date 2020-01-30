@@ -2,6 +2,7 @@
 <%- include('./partials/navbar.ejs') %>
 <!-- show user profile data -->
 <div class="profile">
+  <h1>Profile</h1>
    <div>
       <a href="/profile/<%= profile.id %>">Profile</a>
       <a href="/profile/<%= profile.id %>/delete">Deactivate Account</a>
@@ -16,7 +17,7 @@
       <p>Phone Number</p> 
       <input type="text" name="phone_number" value="<%= profile.phone_number %>" readonly> 
       <br><br>
-      <a href="/<%= profile.id %>/edit">Edit</a>
+      <a href="/profile/<%= profile.id %>/edit">Edit</a>
    </div>
 </div>
 

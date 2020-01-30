@@ -1,5 +1,7 @@
 const router = require('express').Router()
 const GameController = require('../controllers/Game')
+const auth = require('../middleware/auth')
+
 router.get('/', GameController.findAll)//menampilkan list games
 
 router.get('/:id/edit', GameController.editForm)
@@ -10,7 +12,7 @@ router.get('/:id/delete', GameController.deleteGame)
 router.post('/:id/addDlc', GameController.addDLC)
 router.get('/:idGame/:id/deleteDlc', GameController.deleteDlc)
 router.get('/:id/:price/buy', GameController.buyGame) //membeli game ->user only
-router.get('/:id/:slug', GameController.detailGame) //menampilkan detail game
+router.get('/:id/:slug',auth.isLogin, GameController.detailGame) //menampilkan detail game
 
 
 
