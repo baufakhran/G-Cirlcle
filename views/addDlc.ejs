@@ -1,8 +1,11 @@
 <%- include('./partials/header.ejs') %>
 <%- include('./partials/navbar.ejs') %>
 <!-- adding DLC from game-->
-
-
+<h1>Add DLC</h1>
+<form action="/dlc/add">
+<label for="name">DLC Name :</label><br>
+<input type="text" name="name">
+</form>
 
 
 <%- include('./partials/footer.ejs') %>

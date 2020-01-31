@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Dlc.associate = function(models) {
     // associations can be defined here
+    Dlc.belongsTo(models.Game)
   };
   return Dlc;
 };

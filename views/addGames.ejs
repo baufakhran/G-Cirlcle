@@ -1,8 +1,22 @@
 <%- include('./partials/header.ejs') %>
 <%- include('./partials/navbar.ejs') %>
 <!-- adding Game -->
+<h1>Add New Game</h1>
 
-
-
+<form action="/games/add" method="POST">
+  <label for="name">Name :</label><br>
+  <input type="text" name="name" ><br>
+  <label for="price">Price :</label><br>
+  <input type="number" name="price"><br>
+  <label for="rating">Rating :</label><br>
+  <input type="number" name="rating" step="any"><br>
+  <label for="genre">Genre :</label><br>
+  <input type="text" name="genre"><br>
+  <label for="url">URL :</label><br>
+  <input type="text" name="url"><br>
+  <label for="released">Released :</label><br>
+  <input type="text" name="released"><br>
+  <button>Submit</button>
+</form>
 
 <%- include('./partials/footer.ejs') %>

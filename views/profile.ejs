@@ -1,16 +1,27 @@
 <%- include('./partials/header.ejs') %>
 <%- include('./partials/navbar.ejs') %>
 <!-- show user profile data -->
-<form action="/" method="POST">
-   <label for="username">Username</label>
-   <input type="text" name="username" value="<%= %>"> <br/>
-   <label for="gameName">Games Owned</label>
-   <input type="text" name="gameName" value="<%= %>"> <br/>
-   <label for="email">Email</label>
-   <input type="email" name="email" value="<%= %>"> <br/>
-   <label for="phone_number">phone_number</label>
-</form>
-
-
+<div class="profile">
+  <h1>Profile</h1>
+   <div>
+      <a href="/profile/<%= profile.id %>">Profile</a>
+      <a href="/profile/<%= profile.id %>/delete">Deactivate Account</a>
+      <button><a href="/profile/<%= profile.id %>/topup">TopUp</a></button>
+   </div>
+   <div style="text-align :center">   
+      <p>Username </p>
+      <input type="text" name="username" value="<%= profile.username %>" readonly> 
+      <p>Games owned</p> 
+      <input type="text" name="gameName" value="<%= games %>" readonly> 
+      <p>Wallet</p> 
+      <input type="number" name="wallet" value="<%= profile.wallet %>" readonly>
+      <p>Email</p> 
+      <input type="email" name="email" value="<%= profile.email %>" readonly> 
+      <p>Phone Number</p> 
+      <input type="text" name="phone_number" value="<%= profile.phone_number %>" readonly> 
+      <br><br>
+      <a href="/profile/<%= profile.id %>/edit">Edit</a>
+   </div>
+</div>
 
 <%- include('./partials/footer.ejs') %>

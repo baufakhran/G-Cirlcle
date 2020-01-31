@@ -1,7 +1,8 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 3001
 const indexRoter = require('./routes')
+const session = require('express-session')
 
 app.set('view engine', 'ejs')
 

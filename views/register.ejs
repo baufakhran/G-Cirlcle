@@ -1,0 +1,19 @@
+<%- include('./partials/header.ejs') %>
+<%- include('./partials/navbar.ejs') %>
+
+<div style="text-align: center">
+   <h1>Register</h1>
+   <form action="/register" method="POST">
+      <label for="username">Username</label>
+      <input type="text" name="username" required autofocus> <br>
+      <label for="password">Password</label>
+      <input type="password" name="password" required><br/>
+      <label for="email">Email</label>
+      <input type="email" name="email" required> <br/>
+      <label for="phone_number">Phone Number</label>
+      <input type="text" name="phone_number" required> <br />
+      <button>register</button>
+   </form>
+</div>
+
+<%- include('./partials/footer.ejs') %>
