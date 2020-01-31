@@ -49,7 +49,7 @@ class UserController {
          }
       })
          .then(profile => {
-            res.redirect('/profile')
+            res.redirect(`/profile/${id}`)
          })
          .catch(err => {
             res.render('error', { err })
@@ -118,7 +118,7 @@ class UserController {
                req.session.isLogin = true
                req.session.wallet = data.wallet
                // console.log(req.session)
-               res.redirect(`/profile/${data.id}`)
+               res.redirect(`/`)
             }
          })
          .catch(err =>{ 
