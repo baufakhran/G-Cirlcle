@@ -29,7 +29,7 @@
       <% }) %>
     <% } else { %>
       <% data.Dlcs.forEach(el=>{ %>
-        <br> <%= el.name %> ------ <a href="/games/<%= data.id %> /<%= el.id %>/deleteDlc">DELETE</a>
+        <br> <%= el.name %> ------ <a href="/games/<%= data.id %> /<%= el.id %>/deleteDlc" onclick="return confirm('are you sure?')">DELETE</a>
       <% }) %>
     <% } %> 
 
@@ -38,7 +38,7 @@
 <tr>
   <td><b>Action :</b> 
   <% if(role==='admin'){ %>
-  <a href="/games/<%= data.id %>/edit">edit</a>|<a href="/games/<%= data.id %>/delete">delete</a>
+  <a href="/games/<%= data.id %>/edit">edit</a>|<a href="/games/<%= data.id %>/delete" onclick="return confirm('are you sure?')">delete</a>
   <% } %>
   <% if(role==='user'){ %>
   <a href="/games/<%=data.id%>/<%=data.price%>/buy">buy</a>
