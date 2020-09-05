@@ -3,12 +3,11 @@ const GameHelper = require('../helper/gameHelper')
 
 class GameController{
   static findAll(req,res){
-    let role = req.session.role 
-    // console.log(req.session);
+    let role = req.session.role;
     Game.findAll({include : [Dlc,User]})
     .then(result=> {
       // res.send(result)
-      res.render('games', {data:result, role})
+      res.render('games', { data:result, role, users: req.users })
     })
     .catch(err=>res.send(err))
   }
@@ -19,7 +18,7 @@ class GameController{
     let role = req.session.role 
     Game.findAll({where:{id:idSelect},include : [Dlc]})
     .then(result=> {
-      res.render('gameDetail',{data:result[0], role:role, error})
+      res.render('gameDetail',{ data:result[0], role:role, error, users: req.users })
     })
     .catch(err=>res.send(err))
   }
@@ -29,7 +28,7 @@ class GameController{
     Game.findByPk(idSelect)
       .then(result=> {
         let genre = GameHelper.genreToArray(result.genre) 
-        res.render('editGames', {data : result, genre:genre})
+        res.render('editGames', { data : result, genre:genre })
       })
       .catch(err=> res.send(err))
   }
@@ -117,16 +116,16 @@ class GameController{
     let name = req.body.name
     let GameId = req.params.id
     Dlc.create({name,GameId})
-      .then(result=>res.redirect(`/games/${GameId}/bla-bla`))
-      .catch(err=>res.send(err))
+      .then(result => res.redirect(`/games/${GameId}/bla-bla`))
+      .catch(err => res.send(err))
   }
 
   static deleteDlc(req,res){
     let idDelete = +req.params.id
     let idGame = +req.params.idGame 
     Dlc.destroy({where:{id:idDelete}})
-    .then(result=>res.redirect(`/games/${idGame}/bla-bla`))
-    .catch(err=>res.send(err))
+    .then(result => res.redirect(`/games/${idGame}/bla-bla`))
+    .catch(err => res.send(err))
   }
 
 }

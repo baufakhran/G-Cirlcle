@@ -15,7 +15,7 @@ class UserController {
                games.push(game.name)
             })
 
-            res.render('profile', { profile, games })
+            res.render('profile', { profile, games, users: req.users })
          })
          .catch(err => {
             res.render('error', { err })
@@ -32,7 +32,7 @@ class UserController {
       })
          .then(profile => {
             // console.log(profile);
-            res.render('editProfile', { profile })
+            res.render('editProfile', { profile, users: req.users })
          })
          .catch(err => {
             res.render('error', { err })
@@ -59,7 +59,7 @@ class UserController {
    static getDeleteForm(req, res) {
       // console.log(req.params)
       let id = +req.params.id
-      res.render('deactivateAccount', { id })
+      res.render('deactivateAccount', { id, users: req.users })
    }
 
    static deleteData(req, res) {
@@ -91,9 +91,9 @@ class UserController {
       if(failed === 'failed') {
          let err = 'Wrong username/password'
          failed = ''
-         res.render('auth', { err })
+         res.render('auth', { err, users: req.users })
       } else {
-         res.render('auth', { err : ''})
+         res.render('auth', { err : '', users: req.users})
       }
    }
 
@@ -127,7 +127,7 @@ class UserController {
    }
 
    static getFormRegister(req, res) {
-      res.render('register')
+      res.render('register', { users: req.users })
    }
 
    static register(req, res) {
@@ -135,7 +135,6 @@ class UserController {
       let input = { username, password, email, phone_number}
       User.create(input)
          .then(data => {
-            // console.log(data)
             res.redirect('/login')
          })
          .catch(err => res.render('error', { err }))
@@ -149,25 +148,20 @@ class UserController {
          include : [Game]
       })
          .then(data => {
-            console.log(req.session, '=====')
-            // res.send(data)
             let gamesInUser = []
             data.forEach(game => {
-               // res.send(game.username)
                let userGame = {}
                let games = []
                game.Games.forEach(el => {
                   games.push(el.name)
-                  // res.send(games)
                })
                let name = game.username
                userGame[name] = games
-               // res.send(userGame)
                gamesInUser.push(userGame)
             })
             // res.send(gamesInUser)
             // if(data.dataValues.Games.length !== 0) {
-               res.render('users', { data, gamesInUser })
+               res.render('users', { data, gamesInUser, users: req.users })
             // }
          })
          .catch(err => {
@@ -188,7 +182,7 @@ class UserController {
 
    static topUpForm(req,res){
      let id = req.session.userId
-     res.render('topUpForm', {id})
+     res.render('topUpForm', { id, users: req.users })
    }
 
    static topUp(req,res){

@@ -1,4 +1,19 @@
 class Authentication {
+   static getUser(req, res, next) {
+      let data = ''
+      if(req.session.isLogin) {
+         data = {
+            userId : req.session.userId,
+            username : req.session.username,
+            role : req.session.role,
+            isLogin : req.session.isLogin,
+            wallet : req.session.wallet
+         }
+         req.users = data;
+      }
+      next();
+   }
+
    static checkAdmin(req, res, next) {
       if(req.session.isLogin) {
          if(req.session.role === 'admin') {

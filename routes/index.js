@@ -8,19 +8,20 @@ const userRouter = require('./users')
 const auth = require('../middleware/auth')
 
 
+router.use(auth.getUser);
 router.get('/', (req, res) => {
-   let data = ''
-   if(req.session.isLogin) {
-      data = {
-         userId : req.session.userId,
-         username : req.session.username,
-         role : req.session.role,
-         isLogin : req.session.isLogin,
-         wallet : req.session.wallet
-      }
-      // console.log(data)
-   }
-  res.render('index', { data })
+   let users = req.users;
+   // if(req.session.isLogin) {
+   //    data = {
+   //       userId : req.session.userId,
+   //       username : req.session.username,
+   //       role : req.session.role,
+   //       isLogin : req.session.isLogin,
+   //       wallet : req.session.wallet
+   //    }
+   //    // console.log(data)
+   // }
+  res.render('index', { users })
 })
 router.use('/games', gamesRouter)
 router.use('/profile', profilRouter) //1
